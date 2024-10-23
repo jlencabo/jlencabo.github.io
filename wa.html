@@ -1,0 +1,25 @@
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WhatsApp Chat Opener</title>
+</head>
+<body>
+    <h1>WhatsApp Chat Opener</h1>
+    <label for="phone">Introduce el número de teléfono:</label>
+    <input type="text" id="phone" name="phone">
+    <button onclick="openWhatsApp()">Abrir Chat en WhatsApp</button>
+
+    <script>
+        function openWhatsApp() {
+            var phone = document.getElementById('phone').value;
+            if (phone) {
+                var url = 'https://wa.me/' + phone;
+                window.open(url, '_blank');
+            } else {
+                alert('Por favor, introduce un número de teléfono.');
+            }
+        }
+    </script>
+</body>
+</html>
