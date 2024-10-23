@@ -48,7 +48,7 @@
     <script src="https://cdn.jsdelivr.net/npm/qrious"></script>
 </head>
 <body>
-    <h1>Generador de Código QR para Contactos</h1>
+    <h2>Generador de Código QR para Contactos</h2>
     <label for="first-name">Nombre:</label>
     <input type="text" id="first-name" name="first-name" placeholder="Ej: Juan">
     <label for="last-name">Apellidos:</label>
@@ -57,6 +57,8 @@
     <input type="email" id="email" name="email" placeholder="Ej: juan.perez@example.com">
     <label for="phone">Teléfono Móvil:</label>
     <input type="tel" id="phone" name="phone" placeholder="Ej: 123456789">
+    <label for="company">Empresa:</label>
+    <input type="text" id="company" name="company" placeholder="Ej: Empresa XYZ">
     <button onclick="generateQRCode()">Generar Código QR</button>
     <canvas id="qrcode"></canvas>
 
@@ -66,11 +68,13 @@
             var lastName = document.getElementById('last-name').value;
             var email = document.getElementById('email').value;
             var phone = document.getElementById('phone').value;
+            var company = document.getElementById('company').value;
 
-            if (firstName ) {
+            if (firstName) {
                 var contactInfo = `BEGIN:VCARD
 VERSION:3.0
 FN:${firstName} ${lastName}
+ORG:${company}
 EMAIL:${email}
 TEL:${phone}
 END:VCARD`;
@@ -82,7 +86,7 @@ END:VCARD`;
                     size: 200
                 });
             } else {
-                alert('El nombre es necesario');
+                alert('El nombre es obligatorio');
             }
         }
     </script>
