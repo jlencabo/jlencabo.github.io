@@ -75,7 +75,11 @@ EMAIL:${email}
 TEL:${phone}
 END:VCARD`;
 
-                var qrcode = new QRCode(document.getElementById("qrcode"), {
+                // Clear previous QR code
+                document.getElementById("qrcode").innerHTML = "";
+
+                // Generate new QR code
+                new QRCode(document.getElementById("qrcode"), {
                     text: contactInfo,
                     width: 128,
                     height: 128
