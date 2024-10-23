@@ -45,7 +45,7 @@
             margin-top: 20px;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrious"></script>
 </head>
 <body>
     <h1>Generador de Código QR para Contactos</h1>
@@ -58,7 +58,7 @@
     <label for="phone">Teléfono Móvil:</label>
     <input type="tel" id="phone" name="phone" placeholder="Ej: 123456789">
     <button onclick="generateQRCode()">Generar Código QR</button>
-    <div id="qrcode"></div>
+    <canvas id="qrcode"></canvas>
 
     <script>
         function generateQRCode() {
@@ -75,14 +75,11 @@ EMAIL:${email}
 TEL:${phone}
 END:VCARD`;
 
-                // Clear previous QR code
-                document.getElementById("qrcode").innerHTML = "";
-
-                // Generate new QR code
-                new QRCode(document.getElementById("qrcode"), {
-                    text: contactInfo,
-                    width: 128,
-                    height: 128
+                // Generar nuevo código QR
+                var qr = new QRious({
+                    element: document.getElementById('qrcode'),
+                    value: contactInfo,
+                    size: 200
                 });
             } else {
                 alert('Por favor, rellena todos los campos.');
