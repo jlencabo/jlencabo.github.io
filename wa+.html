@@ -1,0 +1,73 @@
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Chat Opener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label, input, select, button {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        input, select, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>WhatsApp Chat Opener</h1>
+    <label for="country-code">Código de país:</label>
+    <select id="country-code" name="country-code">
+        <option value="34" data-flag="🇪🇸">España (+34)</option>
+        <option value="1" data-flag="🇺🇸">Estados Unidos (+1)</option>
+        <option value="44" data-flag="🇬🇧">Reino Unido (+44)</option>
+        <option value="49" data-flag="🇩🇪">Alemania (+49)</option>
+        <!-- Agrega más opciones según sea necesario -->
+    </select>
+    <label for="phone">Número de teléfono:</label>
+    <input type="text" id="phone" name="phone" placeholder="Ej: 123456789">
+    <button onclick="openWhatsApp()">Abrir Chat en WhatsApp</button>
+
+    <script>
+        function openWhatsApp() {
+            var countryCode = document.getElementById('country-code').value;
+            var phone = document.getElementById('phone').value;
+            if (countryCode && phone) {
+                var url = 'https://wa.me/' + countryCode + phone;
+                window.open(url, '_blank');
+            } else {
+                alert('Por favor, introduce un código de país y un número de teléfono.');
+            }
+        }
+    </script>
+</body>
+</html>
