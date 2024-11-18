@@ -76,6 +76,7 @@
             color: #2980b9;
             text-decoration: none;
         }
+   #mas_info {display: none; /* Oculta la capa inicialmente */ }
     </style>
 </head>
 <body>
@@ -102,10 +103,11 @@
             <div class="row align-items-center">
                 <div class="col-md-6 main-function">
                     <h1>Inmobiliaria Santa Gema</h1>
-                    <p>Ayudamos a nuestros clientes en la compra, venta o alquiler de propiedades inmobiliarias.</p>
+                    <p>Ayudamos a nuestros clientes en la <strong>compra, venta o alquiler</strong> de propiedades inmobiliarias.</p>
+                    <p> Además, disponemos de los siguientes servicios:</p>
                     <ul class="icon-list">
                         <li><i class="fas fa-euro-sign"></i> Asesoramiento financiación</li>
-                        <li><i class="fas fa-home"></i> Valoraciones inmuebles</li>
+                        <li><i class="fas fa-home"></i> Valoración inmuebles</li>
                         <li><i class="fas fa-shield-alt"></i> Seguros alquiler</li>
                     </ul>
                 </div>
@@ -118,7 +120,7 @@
 
     <section class="section-gray py-5">
         <div class="container">
-            <h2>Nuestras Claves</h2>
+            <h2>Nuestras Claves</h2><p></p>
             <div class="row">
                 <div class="col-md-4">
                     <ul class="icon-list">
@@ -144,6 +146,20 @@
                         <li><i class="fas fa-user-friends"></i> <strong>Contacto personal:</strong> Cuidamos todos los detalles de manera que nuestros clientes sientan desde el primer momento que están trabajando con profesionales.</li>
                     </ul>
                 </div>
+            </div>
+<button class="btn btn-primary" onclick="mostrarOcultar()">Mas información</button>
+            <div id="mas_info">
+                <p>Santa Gema Proyectos y Desarrollos Inmobiliarios es una empresa con experiencia demostrada en el sector inmobiliario, con el objetivo de ayudar a todo aquel que precise realizar cualquier tipo de operación con bienes inmuebles y busque el mejor asesoramiento para su correcta ejecución.</p>
+                <p>Le acompañamos durante todo la gestión para asegurar el éxito y satisfacción final. En tres décadas hemos conseguido que nuestros clientes sientan nuestra empresa como su casa.</p>
+                <p>Una de las decisiones mas importantes en nuestra vida y que todos nos planteamos en algún momento son los referentes a los de nuestro hogar.</p>
+                <p>En los tiempos que vivimos, bombardeados continuamente por mensajes orientados al consumo, es posible confundir la compra de una vivienda como una operación de este tipo, es decir de puro consumo, cuando en realidad la vivienda es una necesidad y un derecho que se refleja en nuestra forma política de convivencia.</p>
+                <p>En algo que se nos plantea tan importante, por la cantidad de recursos económicos que se van a emplear y por su objeto en si mismo, sería imprudente no acudir a un profesional que nos asesore y acompañe para poder llevar a cabo y de la mejor manera esta operación. Mal comparado, sería como intentar extraernos una muela nosotros mismos sin pensar en las fatales consecuencias que podría traernos una infección.</p>
+                <p>Los profesionales del sector inmobiliario que Santagema Proyectos y Desarrollos Inmobiliarios pone a su disposición van a ayudarle en todas y cada una de las fases necesarias para que Vd. acceda a su piso en las mejores condiciones.</p>
+                <p>Desde el proceso de localización de la vivienda de sus sueños, la mejor manera de financiarla y asegurar que lo que está comprando está en las condiciones físicas optimas y en las condiciones legales necesarias.</p>
+                <p>Disponemos de profesionales para la captación y localización de inmuebles que van a proveerle de la vivienda que Vd. siempre ha soñado. Profesionales que van a valorar su futura propiedad en el precio justo al objeto de que Vd. compre siempre en las mejores condiciones económicas.</p>
+                <p>Ponemos a su servicio un equipo de asesores en financiación que le van a proveer de toda la información que Vd. precisa para saber que compra en las mejores condiciones de mercado.</p>
+                <p>Además, nuestro equipo jurídico no va a permitir que la operación en la que tanta ilusión hemos puesto Vd. y nosotros tenga ninguna aspereza legal.</p>
+                <p>¿Quiere mas?. Le garantizamos que nuestro trabajo va a ser el correcto en todo momento y podemos avalarlo con tres decadas de trabajo que nos ha permitido hacer cientos de nuevos amigos cada año.</p>
             </div>
         </div>
     </section>
@@ -236,7 +252,7 @@
 
     <footer class="py-3">
         <div class="container text-center">
-            <p>&copy; 2023 Inmobiliaria Santa Gema</p> 
+            <p>&copy; 2024 Inmobiliaria Santa Gema</p> 
             <p>Avenida de Portugal 15, 28921 Alcorcón (Madrid)</p>
             <p>Teléfono 91 621 19 21</p>
             <a href="#" data-toggle="modal" data-target="#privacidadModal">Política de Privacidad</a>
@@ -246,5 +262,16 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+
+function mostrarOcultar() {
+  var x = document.getElementById("mas_info");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 </body>
 </html>
