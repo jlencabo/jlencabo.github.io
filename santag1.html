@@ -147,7 +147,7 @@
                     </ul>
                 </div>
             </div>
-<button class="btn btn-primary" onclick="mostrarOcultar()">Mas información</button>
+<a href="#" id="link_mas_info" onclick="mostrarOcultar(); return false;">Mostrar más</a>
             <div id="mas_info">
                 <p>Santa Gema Proyectos y Desarrollos Inmobiliarios es una empresa con experiencia demostrada en el sector inmobiliario, con el objetivo de ayudar a todo aquel que precise realizar cualquier tipo de operación con bienes inmuebles y busque el mejor asesoramiento para su correcta ejecución.</p>
                 <p>Le acompañamos durante todo la gestión para asegurar el éxito y satisfacción final. En tres décadas hemos conseguido que nuestros clientes sientan nuestra empresa como su casa.</p>
@@ -264,14 +264,22 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 
-function mostrarOcultar() {
-  var x = document.getElementById("mas_info");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
+  function mostrarOcultar() {
+    var x = document.getElementById("mas_info");
+    var enlace = document.getElementById("link_mas_info");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+      enlace.innerHTML = "Mostrar menos";
+    } else {
+      x.style.display = "none";
+      enlace.innerHTML = "Mostrar más";
+    }
   }
-}
+
+  // Ocultamos la capa al cargar la página
+  window.onload = function() {
+    document.getElementById("mas_info").style.display = "none";
+  };
 </script>
 </body>
 </html>
