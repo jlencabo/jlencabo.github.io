@@ -23,6 +23,9 @@
       text-align: center;
       border: 2px solid #0078D4; /* Borde azul */
       color: #212121; /* Color del texto gris oscuro */
+      width: 90%; /* Ancho del 90% en pantallas pequeñas */
+      max-width: 500px; /* Ancho máximo en pantallas grandes */
+      margin: 0 auto; /* Centrado horizontal */
     }
 
     h1 {
@@ -36,6 +39,13 @@
 
     .qr-code {
       margin-top: 20px;
+    }
+
+    /* Media query para pantallas pequeñas */
+    @media (max-width: 600px) {
+      .card {
+        width: 90%; 
+      }
     }
   </style>
 </head>
