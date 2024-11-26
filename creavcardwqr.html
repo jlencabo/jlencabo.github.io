@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarjeta de Visita</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #e0f7fa; /* Azul claro de fondo */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background-color: #00838f; /* Azul oscuro */
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      border: 2px solid #b0bec5; /* Borde gris azulado */
+      color: #ffffff; /* Color del texto blanco */
+    }
+
+    h1 {
+      color: #82b1ff; /* Azul claro para el nombre */
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #e0f7fa; /* Azul muy claro para el resto del texto */
+    }
+
+    .qr-code {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1 id="nombreCompleto"></h1>
+    <p id="empresa"></p>
+    <p id="direccion"></p>
+    <p>Teléfono: <span id="telefono"></span></p>
+    <p>Email: <span id="email"></span></p>
+    <p id="linkedin"></p>
+    <p id="instagram"></p>
+    <canvas id="qrcode"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+  <script>
+    function generarQR() {
+      // Obtener los parámetros de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const nombre = urlParams.get('nombre');
+      const apellidos = urlParams.get('apellidos');
+      const empresa = urlParams.get('empresa');
+      const direccion = urlParams.get('direccion');
+      const telefono = urlParams.get('telefono');
+      const email = urlParams.get('email');
+      const linkedin = urlParams.get('linkedin');
+      const instagram = urlParams.get('instagram');
+
+      // Mostrar los datos en la tarjeta
+      document.getElementById('nombreCompleto').textContent = `${nombre} ${apellidos}`;
+      if (empresa) {
+        document.getElementById('empresa').textContent = empresa;
+      }
+      if (direccion) {
+        document.getElementById('direccion').textContent = direccion;
+      }
+      document.getElementById('telefono').textContent = telefono;
+      document.getElementById('email').textContent = email;
+      if (linkedin) {
+        document.getElementById('linkedin').textContent = `LinkedIn: ${linkedin}`;
+      }
+      if (instagram) {
+        document.getElementById('instagram').textContent = `Instagram: ${instagram}`;
+      }
+
+      // Generar la vCard
+      let vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:${nombre} ${apellidos}`;
+      if (empresa) {
+        vcard += `\nORG:${empresa}`;
+      }
+      if (direccion) {
+        vcard += `\nADR:${direccion}`;
+      }
+      vcard += `\nTEL:${telefono}
+EMAIL:${email}`;
+      if (linkedin) {
+        vcard += `\nURL:${linkedin}`;
+      }
+      if (instagram) {
+        vcard += `\nURL:${instagram}`;
+      }
+      vcard += `\nEND:VCARD`;
+
+      // Generar el QR con qrious
+      const qr = new QRious({
+        element: document.getElementById('qrcode'),
+        value: vcard,
+        size: 200,
+      });
+    }
+
+    // Llamar a la función generarQR después de que se cargue la página
+    window.onload = generarQR;
+  </script>
+</body>
+
+</html>
