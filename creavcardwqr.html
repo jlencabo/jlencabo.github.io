@@ -55,8 +55,12 @@
   <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
   <script>
     function generarQR() {
-      // Obtener los parámetros de la URL
-      const urlParams = new URLSearchParams(window.location.search);
+      // Decodificar la URL
+      const decodedUrl = decodeURIComponent(window.location.href);
+
+      // Obtener los parámetros de la URL decodificada
+      const urlParams = new URLSearchParams(new URL(decodedUrl).search);
+
       const nombre = urlParams.get('nombre');
       const apellidos = urlParams.get('apellidos');
       const empresa = urlParams.get('empresa');
