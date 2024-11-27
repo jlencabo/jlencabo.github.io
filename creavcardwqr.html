@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: sans-serif;
-      background-color: #0063B1; /* Azul de fondo */
+      background-color: #0063B1; 
       display: flex;
       justify-content: center;
       align-items: center;
@@ -16,35 +16,43 @@
     }
 
     .card {
-      background-color: #ffffff; /* Blanco */
+      background-color: #ffffff; 
       border-radius: 10px;
       padding: 30px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       text-align: center;
-      border: 2px solid #0078D4; /* Borde azul */
-      color: #212121; /* Color del texto gris oscuro */
-      width: 80%; /* Ancho del 90% en pantallas pequeñas */
-      max-width: 500px; /* Ancho máximo en pantallas grandes */
-      margin: 0 auto; /* Centrado horizontal */
+      border: 2px solid #0078D4; 
+      color: #212121; 
+      width: 90%; 
+      max-width: 500px; 
+      margin: 0 auto; 
     }
 
     h1 {
-      color: #0063B1; /* Azul del fondo para el nombre */
+      color: #0063B1; 
       margin-bottom: 20px;
     }
 
     p {
-      color: #424242; /* Gris oscuro para el resto del texto */
+      color: #424242; 
     }
 
     .qr-code {
       margin-top: 20px;
+      display: flex; /* Para alinear la foto y el QR */
+      justify-content: center; /* Centrar horizontalmente */
+      align-items: center; /* Centrar verticalmente */
     }
 
-    /* Media query para pantallas pequeñas */
-    @media (max-width: 500px) {
+    .qr-code img { /* Estilo para la foto */
+      max-width: 150px; 
+      height: auto;
+      margin-right: 20px; /* Espacio entre la foto y el QR */
+    }
+
+    @media (max-width: 600px) {
       .card {
-        width: 80%; 
+        width: 90%; 
       }
     }
   </style>
@@ -59,7 +67,10 @@
     <p>Email: <span id="email"></span></p>
     <p id="linkedin"></p>
     <p id="instagram"></p>
-    <canvas id="qrcode"></canvas>
+    <div class="qr-code">
+      <img id="fotografia" src="" alt="Foto">
+      <canvas id="qrcode"></canvas>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
@@ -79,6 +90,7 @@
       const email = urlParams.get('email');
       const linkedin = urlParams.get('linkedin');
       const instagram = urlParams.get('instagram');
+      const fotografia = urlParams.get('fotografia');
 
       // Mostrar los datos en la tarjeta
       document.getElementById('nombreCompleto').textContent = `${nombre} ${apellidos}`;
@@ -96,12 +108,14 @@
       if (instagram) {
         document.getElementById('instagram').textContent = `Instagram: ${instagram}`;
       }
+      if (fotografia) {
+        document.getElementById('fotografia').src = fotografia;
+      }
 
       // Generar la vCard
       let vcard = `BEGIN:VCARD
 VERSION:3.0
-N:${apellidos};${nombre}
-\nFN:${nombre} ${apellidos}`;
+FN:${nombre} ${apellidos}`;
       if (empresa) {
         vcard += `\nORG:${empresa}`;
       }
@@ -115,6 +129,10 @@ EMAIL:${email}`;
       }
       if (instagram) {
         vcard += `\nURL:${instagram}`;
+      }
+      // Añadir la foto a la vCard (puede que no funcione en todos los lectores de QR)
+      if (fotografia) {
+        vcard += `\nPHOTO;ENCODING=b;TYPE=JPEG:${fotografia}`; 
       }
       vcard += `\nEND:VCARD`;
 
