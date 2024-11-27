@@ -44,12 +44,6 @@
       align-items: center; 
     }
 
-    .qr-code img { 
-      max-width: 150px; 
-      height: auto;
-      margin-right: 20px; 
-    }
-
     @media (max-width: 600px) {
       .card {
         width: 90%; 
@@ -68,9 +62,7 @@
     <p id="linkedin"></p>
     <p id="instagram"></p>
     <div class="qr-code">
-      <img id="fotografia" src="https://drive.google.com/file/d/10uk9XhhFm3mOgrNutt6yxSiP_w8M2wKw" alt="Foto">
-      <canvas id="qrcode"></canvas>
-    </div>
+      <canvas id="qrcode"></canvas> </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
@@ -90,7 +82,6 @@
       const email = urlParams.get('email');
       const linkedin = urlParams.get('linkedin');
       const instagram = urlParams.get('instagram');
-      const fotografia = urlParams.get('fotografia');
 
       // Mostrar los datos en la tarjeta
       document.getElementById('nombreCompleto').textContent = `${nombre} ${apellidos}`;
@@ -107,10 +98,6 @@
       }
       if (instagram) {
         document.getElementById('instagram').textContent = `Instagram: ${instagram}`;
-      }
-      if (fotografia) {
-        // Codificar la URL de la fotografía
-        document.getElementById('fotografia').src = 'https://drive.google.com/file/d/10uk9XhhFm3mOgrNutt6yxSiP_w8M2wKw'; 
       }
 
       // Generar la vCard
@@ -131,16 +118,13 @@ EMAIL:${email}`;
       if (instagram) {
         vcard += `\nURL:${instagram}`;
       }
-      if (fotografia) {
-        vcard += `\nPHOTO;ENCODING=b;TYPE=JPEG:${fotografia}`; 
-      }
       vcard += `\nEND:VCARD`;
 
       // Generar el QR con qrious
       const qr = new QRious({
         element: document.getElementById('qrcode'),
         value: vcard,
-        size: 150,
+        size: 200,
       });
     }
 
