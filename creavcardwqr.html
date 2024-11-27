@@ -100,7 +100,8 @@
       // Generar la vCard
       let vcard = `BEGIN:VCARD
 VERSION:3.0
-FN:${nombre} ${apellidos}`;
+N:${apellidos};${nombre}
+\nFN:${nombre} ${apellidos}`;
       if (empresa) {
         vcard += `\nORG:${empresa}`;
       }
