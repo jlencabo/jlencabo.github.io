@@ -23,7 +23,7 @@
       text-align: center;
       border: 2px solid #0078D4; /* Borde azul */
       color: #212121; /* Color del texto gris oscuro */
-      width: 90%; 
+      width: 80%; 
       max-width: 500px; 
       margin: 0 auto; 
     }
@@ -44,9 +44,9 @@
       align-items: center; 
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 500px) {
       .card {
-        width: 90%; 
+        width: 80%; 
       }
     }
   </style>
@@ -125,7 +125,7 @@ EMAIL:${email}`;
       const qr = new QRious({
         element: document.getElementById('qrcode'),
         value: vcard,
-        size: 200,
+        size: 150,
       });
     }
 
