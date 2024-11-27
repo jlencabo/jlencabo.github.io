@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: sans-serif;
-      background-color: #0063B1; 
+      background-color: #0063B1; /* Azul de fondo */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -16,38 +16,38 @@
     }
 
     .card {
-      background-color: #ffffff; 
+      background-color: #ffffff; /* Blanco */
       border-radius: 10px;
       padding: 30px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       text-align: center;
-      border: 2px solid #0078D4; 
-      color: #212121; 
+      border: 2px solid #0078D4; /* Borde azul */
+      color: #212121; /* Color del texto gris oscuro */
       width: 90%; 
       max-width: 500px; 
       margin: 0 auto; 
     }
 
     h1 {
-      color: #0063B1; 
+      color: #0063B1; /* Azul del fondo para el nombre */
       margin-bottom: 20px;
     }
 
     p {
-      color: #424242; 
+      color: #424242; /* Gris oscuro para el resto del texto */
     }
 
     .qr-code {
       margin-top: 20px;
-      display: flex; /* Para alinear la foto y el QR */
-      justify-content: center; /* Centrar horizontalmente */
-      align-items: center; /* Centrar verticalmente */
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
     }
 
-    .qr-code img { /* Estilo para la foto */
+    .qr-code img { 
       max-width: 150px; 
       height: auto;
-      margin-right: 20px; /* Espacio entre la foto y el QR */
+      margin-right: 20px; 
     }
 
     @media (max-width: 600px) {
@@ -109,7 +109,8 @@
         document.getElementById('instagram').textContent = `Instagram: ${instagram}`;
       }
       if (fotografia) {
-        document.getElementById('fotografia').src = fotografia;
+        // Codificar la URL de la fotografía
+        document.getElementById('fotografia').src = encodeURIComponent(fotografia); 
       }
 
       // Generar la vCard
@@ -130,7 +131,6 @@ EMAIL:${email}`;
       if (instagram) {
         vcard += `\nURL:${instagram}`;
       }
-      // Añadir la foto a la vCard (puede que no funcione en todos los lectores de QR)
       if (fotografia) {
         vcard += `\nPHOTO;ENCODING=b;TYPE=JPEG:${fotografia}`; 
       }
