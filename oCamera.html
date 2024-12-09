@@ -1,43 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Abrir Cámara</title>
+  <title>Escanear QR</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <style>
-    .button-container {
-      position: relative;
-      overflow: hidden;
-      display: inline-block;
-    }
-
-    .button-container input[type=file] {
-      position: absolute;
-      opacity: 0;
-      right: 0;
-      top: 0;
-    }
-
-    .button {
-      background-color: #4CAF50; /* Green */
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-    }
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 </head>
 <body>
+  <video id="video" width="640" height="480" autoplay></video>
+  <canvas id="canvas" width="640" height="480"></canvas>
+  <p id="result"></p>
 
-  <div class="button-container">
-    <input type="file" accept="image/*" capture="camera" id="fileInput">
-    <label for="fileInput" class="button">Abrir cámara</label>
-  </div>
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    const result = document.getElementById('result');
 
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+      .then(function(stream) {
+        video.srcObject = stream;
+      })
+      .catch(function(err) {
+        console.error("Error al acceder a la cámara: ", err);
+      });
+
+    function scanQR() {
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height);
+      if (code) {
+        result.textContent = "Código QR detectado: " + code.data;
+      } else {
+        requestAnimationFrame(scanQR);
+      }
+    }
+
+    requestAnimationFrame(scanQR);
+  </script>
 </body>
 </html>
