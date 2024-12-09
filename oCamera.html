@@ -4,25 +4,40 @@
   <title>Abrir Cámara</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
+  <style>
+    .button-container {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .button-container input[type=file] {
+      position: absolute;
+      opacity: 0;
+      right: 0;
+      top: 0;
+    }
+
+    .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-  <video id="video" width="640" height="480" autoplay></video>
-  <button id="startButton">Iniciar cámara</button>
-
-  <script>
-    let video = document.getElementById('video');
-    let startButton = document.getElementById('startButton');
-
-    startButton.addEventListener('click', async () => {
-      try {
-        let stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        video.srcObject = stream;
-      } catch (err) {
-        console.error('Error al acceder a la cámara:', err);
-      }
-    });
-  </script>
+  <div class="button-container">
+    <input type="file" accept="image/*" capture="camera" id="fileInput">
+    <label for="fileInput" class="button">Abrir cámara</label>
+  </div>
 
 </body>
 </html>
